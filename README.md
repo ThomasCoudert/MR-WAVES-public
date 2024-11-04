@@ -1,6 +1,11 @@
 # MR-WAVES
 MR Water-diffusion And Vascular Effects Simulations tools. Can be used for Magnetic Resonance Fingerprinting.
 
+Developed at the Grenoble Institute Neurosciences (GIN) in the Neuroimaging Team.
+
+by : Thomas Coudert, Maitê Marçal, Aurélien Delphin, Antoine Barrier, Benjamin Lemasson and Thomas Christen.
+
+
 # PRE/POST contrast agent MRvF example:
 ## Intra-voxel magnetic field distributions
 
