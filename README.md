@@ -1,54 +1,28 @@
 # MR-WAVES
 MR Water-diffusion And Vascular Effects Simulations tools. Can be used for Magnetic Resonance Fingerprinting.
 
-# Intra-voxel magnetic field distributions
-### OLD VERSION USING MRVOX: 
-Choose the folder on summer that contain all .mat file of pre-computed distributions (actually done by MRVox)
-```
-/data_network/summer/projects/Current/2021_MRF_TC/distributions_2024
-```
-Create a simplified table (matlab structure) with all the distributions histograms (pretty fast if Geometry aren't stored, slow otherwise):
-```
-choose_distrib_from_folder.m
-```
-==> run it one time for pre and one time for post contrast, it will create a .mat table with all the distributions (geo1, geo2, ...) that will be used for simulations.
+# PRE/POST contrast agent MRvF example:
+## Intra-voxel magnetic field distributions
 
-### NEW VERSION IN PYTHON: 
+Histograms of frequency distributions associated to microvascular voxels need to be stored in a .mat table.
 
-Run `InitSimu3D.ipynb` to generate directly the .mat table based on the voxel (magnetic field computations are done in Python)
-
-# Simulations
-Simulations (pratt): 
+## Microvascular Bloch Simulations
 ```
 python main_simu.py -json config.json
 ```
-==> where the config json file specifies the json defining the GESFIDE as well as the structure containing distribution histograms computed just before
-==> run one simu for pre-CA signal, one for post-CA
+==> where the config json file specifies the json defining the MR sequence (here GESFIDE example) as well as the structure containing distribution histograms computed just before.
+==> run one simu for pre-CA signal, one for post-CA if needed.
 
-# ADD DIFFUSION
+## ADD DIFFUSION
 use the RNN, in a local notebook, that will compute the diffusion into the dictionary
 ```
 inference_dico_Distrib.ipynb
 ```
-In MATLAB:
-```
-fromRNNtoMP3.m
-``` 
-will concatenate pre/post dictionary and format for MP3 and other matlab functions
+This should be done for pre and post parts of the dictionary if needed. It use a RNN model trained for pre and post contrast parts of the signal. 
 
-Then `add_T2.m` add an exponential of choosen T2 values over the signals.
+## ADD T2
+Simulations have been made at fixed T2=100ms in this example. Various T2 values can be included in the dictionary by simply multiplying signals by appropriate exponential functions for the GESFIDE example. 
 
-# No diffusion:
+Otherwise, varying T2 can be added in the `config.json` file in the first simulations part.
 
-Computed dictionaries PRE+POST need to be concatenated and processed before matching:
-```
-fromDistribtoMP3.m
-```
-==> compute a single dictionary in the appropriate format
-
-
-Then : `add_T2.m` to directly use the dico and match after in MP3.
-
-
-And lets go for matching in MP3!
 
