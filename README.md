@@ -11,6 +11,7 @@ Histograms of frequency distributions associated to microvascular voxels need to
 python main_simu.py -json config.json
 ```
 ==> where the config json file specifies the json defining the MR sequence (here GESFIDE example) as well as the structure containing distribution histograms computed just before.
+In this example, the sequence parameter are read from the `GESFIDE_MRvF` json file. 
 ==> run one simu for pre-CA signal, one for post-CA if needed.
 
 ## ADD DIFFUSION
